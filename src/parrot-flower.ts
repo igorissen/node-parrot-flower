@@ -64,7 +64,11 @@ export class ParrotFlower {
     );
     return devices
       .filter(async (device) => {
-        return (await device.getName()).toLowerCase().includes(parrotDeviceName as string);
+        try {
+          return (await device.getName()).toLowerCase().includes(parrotDeviceName as string);
+        } catch (ex) {
+          return false;
+        }
       })
       .map((device) => new FlowerPower(device));
   }

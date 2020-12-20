@@ -5,12 +5,15 @@ const { bluetooth, destroy } = createBluetooth();
 let adapter: Adapter | undefined;
 let parrotDeviceName: string | undefined;
 
+/**
+ *
+ */
 export class ParrotFlower {
   /**
    *
    */
-  public static setParrotDeviceName(): void {
-    parrotDeviceName = 'flower power';
+  public static setParrotDeviceName(deviceName = 'flower power'): void {
+    parrotDeviceName = deviceName;
   }
 
   /**

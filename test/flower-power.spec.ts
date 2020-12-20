@@ -1,4 +1,7 @@
+import { FlowerPower } from '../src/flower-power';
 import { ParrotFlower } from '../src/parrot-flower';
+
+let device: FlowerPower;
 
 beforeEach(async () => {
   ParrotFlower.setParrotDeviceName('flower power');
@@ -6,11 +9,15 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
+  await device.disconnect();
   await ParrotFlower.stopDiscovery();
   ParrotFlower.close();
 });
 
-test('Find discoverable Parrot bluetooth devices', async () => {
+test('Get parrot device friendly name', async () => {
   const devices = await ParrotFlower.getParrotDevices();
-  expect(devices.length).toBeGreaterThanOrEqual(1);
+  device = devices[0];
+  await device.connect();
+  const name = await device.friendlyName();
+  expect(name.length).toBeGreaterThanOrEqual(1);
 });

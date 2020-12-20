@@ -6,4 +6,8 @@ export class FlowerPower {
   constructor(device: Device) {
     this._device = device;
   }
+
+  get device(): Device {
+    return this._device;
+  }
 }

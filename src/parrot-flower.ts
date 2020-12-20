@@ -1,9 +1,21 @@
-import { Adapter, createBluetooth, Device } from 'node-ble';
+import { Adapter, createBluetooth } from 'node-ble';
+import { FlowerPower } from './flower-power';
 
 const { bluetooth, destroy } = createBluetooth();
 let adapter: Adapter | undefined;
+let parrotDeviceName: string | undefined;
 
 export class ParrotFlower {
+  /**
+   *
+   */
+  public static setParrotDeviceName(): void {
+    parrotDeviceName = 'flower power';
+  }
+
+  /**
+   *
+   */
   public static async startDiscovery(): Promise<void> {
     if (!adapter) {
       adapter = await bluetooth.defaultAdapter();
@@ -16,6 +28,9 @@ export class ParrotFlower {
     return await adapter.startDiscovery();
   }
 
+  /**
+   *
+   */
   public static async stopDiscovery(): Promise<void> {
     if (!adapter) {
       return;
@@ -28,41 +43,29 @@ export class ParrotFlower {
     return adapter.stopDiscovery();
   }
 
-  public static findDevices(uids: string[] = [], retry = 5, timeout = 1000): Promise<Device[]> {
-    return new Promise((resolve) => {
-      let counter = 0;
-      let timer: number | undefined;
-
-      // @ts-ignore
-      timer = setInterval(async () => {
-        counter++;
-
-        if (!(counter < retry)) {
-          clearInterval(timer);
-          timer = undefined;
-        }
-
-        let devicesDiscovered: string[] = await (adapter as Adapter).devices();
-
-        if (uids.length) {
-          devicesDiscovered = devicesDiscovered.filter((deviceUid) => {
-            return uids.some((uid) => uid === deviceUid);
-          });
-        }
-
-        const devices: Device[] = await Promise.all(
-          devicesDiscovered.map((deviceUid) => {
-            return (adapter as Adapter).waitDevice(deviceUid);
-          })
-        );
-
-        resolve(devices);
-      }, timeout);
-    });
-  }
-
+  /**
+   *
+   */
   public static close(): void {
     destroy();
     adapter = undefined;
+    parrotDeviceName = undefined;
+  }
+
+  /**
+   *
+   */
+  public static async getParrotDevices(): Promise<FlowerPower[]> {
+    const uuids = await (adapter as Adapter).devices();
+    let devices = await Promise.all(
+      uuids.map((uuid) => {
+        return (adapter as Adapter).waitDevice(uuid);
+      })
+    );
+    return devices
+      .filter(async (device) => {
+        return (await device.getName()).toLowerCase().includes(parrotDeviceName as string);
+      })
+      .map((device) => new FlowerPower(device));
   }
 }

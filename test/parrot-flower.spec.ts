@@ -9,7 +9,7 @@ afterEach(async () => {
   ParrotFlower.close();
 });
 
-test('Find discoverable bluetooth devices', async () => {
-  const devices = await ParrotFlower.findDevices();
+test('Find discoverable Parrot bluetooth devices', async () => {
+  const devices = await ParrotFlower.getParrotDevices();
   expect(devices.length).toBeGreaterThanOrEqual(1);
 });

@@ -1,7 +1,7 @@
 import { Adapter, createBluetooth, Device } from 'node-ble';
 
 const { bluetooth, destroy } = createBluetooth();
-let adapter: Adapter;
+let adapter: Adapter | undefined;
 
 export class ParrotFlower {
   public static async startDiscovery(): Promise<void> {
@@ -28,31 +28,41 @@ export class ParrotFlower {
     return adapter.stopDiscovery();
   }
 
-  public static devices(uids: string[] = [], retry = 5, timeout = 1000) {
-    let counter = 0;
-    let timer;
+  public static findDevices(uids: string[] = [], retry = 5, timeout = 1000): Promise<Device[]> {
+    return new Promise((resolve) => {
+      let counter = 0;
+      let timer: number | undefined;
 
-    timer = setInterval(async () => {
-      counter++;
+      // @ts-ignore
+      timer = setInterval(async () => {
+        counter++;
 
-      if (!(counter < retry)) {
-        clearInterval(timer);
-        timer = null;
-      }
+        if (!(counter < retry)) {
+          clearInterval(timer);
+          timer = undefined;
+        }
 
-      let devices: string[] = await adapter.devices();
+        let devicesDiscovered: string[] = await (adapter as Adapter).devices();
 
-      if (uids.length) {
-        devices = devices.filter((deviceUid) => {
-          return uids.some((uid) => uid === deviceUid);
-        });
-      }
+        if (uids.length) {
+          devicesDiscovered = devicesDiscovered.filter((deviceUid) => {
+            return uids.some((uid) => uid === deviceUid);
+          });
+        }
 
-      const d: Device[] = await Promise.all(
-        devices.map((device) => {
-          return adapter.waitDevice(device);
-        })
-      );
-    }, timeout);
+        const devices: Device[] = await Promise.all(
+          devicesDiscovered.map((deviceUid) => {
+            return (adapter as Adapter).waitDevice(deviceUid);
+          })
+        );
+
+        resolve(devices);
+      }, timeout);
+    });
+  }
+
+  public static close(): void {
+    destroy();
+    adapter = undefined;
   }
 }

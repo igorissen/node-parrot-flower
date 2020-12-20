@@ -1,0 +1,100 @@
+/**
+ * ===============================
+ * LIVE SERVICE + CHARACTERISTICS
+ * ===============================
+ */
+export const LIVE_SERVICE_UUID = '39e1fa00-84a8-11e2-afba-0002a5d5c51b';
+// Before Firmware v1.1.0
+export const LIGHT_CHARACTERISTIC_UUID = '39e1fa01-84a8-11e2-afba-0002a5d5c51b';
+export const SOIL_EC_CHARACTERISTIC_UUID = '39e1fa02-84a8-11e2-afba-0002a5d5c51b';
+export const SOIL_TEMPERATURE_CHARACTERISTIC_UUID = '39e1fa03-84a8-11e2-afba-0002a5d5c51b';
+export const AIR_TEMPERATURE_CHARACTERISTIC_UUID = '39e1fa04-84a8-11e2-afba-0002a5d5c51b';
+export const SOIL_VWC_CHARACTERISTIC_UUID = '39e1fa05-84a8-11e2-afba-0002a5d5c51b';
+export const LIVE_MEASURE_PERIOD_CHARACTERISTIC_UUID = '39e1fa06-84a8-11e2-afba-0002a5d5c51b';
+export const LED_STATE_CHARACTERISTIC_UUID = '39e1fa07-84a8-11e2-afba-0002a5d5c51b';
+export const LAST_MOVE_DATE_CHARACTERISTIC_UUID = '39e1fa08-84a8-11e2-afba-0002a5d5c51b';
+// After Firmware v1.1.0
+export const CALIBRATED_VWC_CHARACTERISTIC_UUID = '39e1fa09-84a8-11e2-afba-0002a5d5c51b';
+export const CALIBRATED_AIR_TEMPERATURE_CHARACTERISTIC_UUID = '39e1fa0a-84a8-11e2-afba-0002a5d5c51b';
+export const CALIBRATED_DLI_CHARACTERISTIC_UUID = '39e1fa0b-84a8-11e2-afba-0002a5d5c51b';
+export const CALIBRATED_EA_CHARACTERISTIC_UUID = '39e1fa0c-84a8-11e2-afba-0002a5d5c51b';
+export const CALIBRATED_ECB_CHARACTERISTIC_UUID = '39e1fa0d-84a8-11e2-afba-0002a5d5c51b';
+export const CALIBRATED_EC_POROUS_CHARACTERISTIC_UUID = '39e1fa0e-84a8-11e2-afba-0002a5d5c51b';
+
+/**
+ * =================================
+ * UPLOAD SERVICE + CHARACTERISTICS
+ * =================================
+ */
+export const UPLOAD_SERVICE_UUID = '39e1fb00-84a8-11e2-afba-0002a5d5c51b';
+export const TX_BUFFER_CHARACTERISTIC_UUID = '39e1fb01-84a8-11e2-afba-0002a5d5c51b';
+export const TX_STATUS_CHARACTERISTIC_UUID = '39e1fb02-84a8-11e2-afba-0002a5d5c51b';
+export const RX_STATUS_CHARACTERISTIC_UUID = '39e1fb03-84a8-11e2-afba-0002a5d5c51b';
+
+/**
+ * ==================================
+ * HISTORY SERVICE + CHARACTERISTICS
+ * ==================================
+ */
+export const HISTORY_SERVICE_UUID = '39e1fc00-84a8-11e2-afba-0002a5d5c51b';
+export const ENTRIES_COUNT_CHARACTERISTIC_UUID = '39e1fc01-84a8-11e2-afba-0002a5d5c51b';
+export const LAST_ENTRY_INDEX_CHARACTERISTIC_UUID = '39e1fc02-84a8-11e2-afba-0002a5d5c51b';
+export const TRANSFER_START_INDEX_CHARACTERISTIC_UUID = '39e1fc03-84a8-11e2-afba-0002a5d5c51b';
+export const CURRENT_SESSION_ID_CHARACTERISTIC_UUID = '39e1fc04-84a8-11e2-afba-0002a5d5c51b';
+export const CURRENT_SESSION_START_INDEX_CHARACTERISTIC_UUID = '39e1fc05-84a8-11e2-afba-0002a5d5c51b';
+export const CURRENT_SESSION_PERIOD_CHARACTERISTIC_UUID = '39e1fc06-84a8-11e2-afba-0002a5d5c51b';
+
+/**
+ * ============================================
+ * FLOWERPOWER CLOCK SERVICE + CHARACTERISTICS
+ * ============================================
+ */
+export const FLOWER_POWER_CLOCK_SERVICE_UUID = '39e1fd00-84a8-11e2-afba-0002a5d5c51b';
+export const FLOWER_POWER_CURRENT_TIME_CHARACTERISTIC_UUID = '39e1fd01-84a8-11e2-afba-0002a5d5c51b';
+
+/**
+ * ==================================================
+ * FLOWERPOWER CALIBRATION SERVICE + CHARACTERISTICS
+ * ==================================================
+ */
+export const FLOWER_POWER_CALIBRATION_SERVICE_UUID = '39e1fe00-84a8-11e2-afba-0002a5d5c51b';
+export const CALIBRATION_DATA_CHARACTERISTIC_UUID = '39e1fe01-84a8-11e2-afba-0002a5d5c51b';
+export const FORCE_BOND_CHARACTERISTIC_UUID = '39e1fe02-84a8-11e2-afba-0002a5d5c51b';
+export const NAME_CHARACTERISTIC_UUID = '39e1fe03-84a8-11e2-afba-0002a5d5c51b';
+export const COLOR_CHARACTERISTIC_UUID = '39e1fe04-84a8-11e2-afba-0002a5d5c51b';
+
+/**
+ * ================================================
+ * OVER THE AIR DOWNLOAD SERVICE + CHARACTERISTICS
+ * ================================================
+ */
+export const OVER_THE_AIR_DOWNLOAD_SERVICE_UUID = 'f000ffc0-0451-4000-b000-000000000000';
+export const OVER_THE_AIR_IMAGE_NOTIFY_CHARACTERISTIC_UUID = 'f000ffc1-0451-4000-b000-000000000000';
+export const OVER_THE_AIR_IMAGE_BLOCK_REQUEST_RESPONSE_CHARACTERISTIC_UUID = 'f000ffc2-0451-4000-b000-000000000000';
+
+/**
+ * ==============================
+ * GAP SERVICE + CHARACTERISTICS
+ * ==============================
+ */
+export const GAP_SERVICE_UUID = '00001801-0000-1000-8000-00805f9b34fb';
+export const GAP_NAME_CHARACTERISTIC_UUID = '00002a00-0000-1000-8000-00805f9b34fb'; // Not found (Firmware v2.0.3)
+export const APPEARANCE_CHARACTERISTIC_UUID = '00002a01-0000-1000-8000-00805f9b34fb'; // Not found (Firmware v2.0.3)
+export const SERVICE_CHANGED_CHARACTERISTIC_UUID = '00002a05-0000-1000-8000-00805f9b34fb'; // Found when testing (Firmware v2.0.3)
+
+/**
+ * =============================================
+ * DEVICE INFORMATION SERVICE + CHARACTERISTICS
+ * =============================================
+ */
+export const DEVICE_INFORMATION_SERVICE_UUID = '0000180a-0000-1000-8000-00805f9b34fb';
+export const SYSTEM_ID_CHARACTERISTIC_UUID = '00002a23-0000-1000-8000-00805f9b34fb';
+export const MODEL_NUMBER_CHARACTERISTIC_UUID = '00002a24-0000-1000-8000-00805f9b34fb';
+export const SERIAL_NUMBER_CHARACTERISTIC_UUID = '00002a25-0000-1000-8000-00805f9b34fb';
+export const FIRMWARE_REVISION_CHARACTERISTIC_UUID = '00002a26-0000-1000-8000-00805f9b34fb';
+export const HARDWARE_REVISION_CHARACTERISTIC_UUID = '00002a27-0000-1000-8000-00805f9b34fb';
+export const SOFTWARE_REVISION_CHARACTERISTIC_UUID = '00002a28-0000-1000-8000-00805f9b34fb';
+export const MANUFACTURER_NAME_CHARACTERISTIC_UUID = '00002a29-0000-1000-8000-00805f9b34fb';
+export const IEEE_11073_20601_REGULATORY_CERTIFICATION_DATA_LIST_CHARACTERISTIC_UUID =
+  '00002a2a-0000-1000-8000-00805f9b34fb';
+export const PNP_ID_CHARACTERISTIC_UUID = '00002a50-0000-1000-8000-00805f9b34fb';

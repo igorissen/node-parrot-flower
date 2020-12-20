@@ -2,73 +2,54 @@ import { Adapter, createBluetooth } from 'node-ble';
 import { FlowerPower } from './flower-power';
 
 const { bluetooth, destroy } = createBluetooth();
-let adapter: Adapter | undefined;
-let parrotDeviceName: string | undefined;
 
-/**
- *
- */
 export class ParrotFlower {
-  /**
-   *
-   */
-  public static setParrotDeviceName(deviceName = 'flower power'): void {
-    parrotDeviceName = deviceName;
+  private _deviceName: string;
+  private _adapter: Adapter;
+
+  constructor(deviceName = 'flower power') {
+    this._deviceName = deviceName;
   }
 
-  /**
-   *
-   */
-  public static async startDiscovery(): Promise<void> {
-    if (!adapter) {
-      adapter = await bluetooth.defaultAdapter();
+  public async startDiscovery(): Promise<void> {
+    if (!this._adapter) {
+      this._adapter = await bluetooth.defaultAdapter();
     }
 
-    if (await adapter.isDiscovering()) {
+    if (await this._adapter.isDiscovering()) {
       return;
     }
 
-    return await adapter.startDiscovery();
+    return await this._adapter.startDiscovery();
   }
 
-  /**
-   *
-   */
-  public static async stopDiscovery(): Promise<void> {
-    if (!adapter) {
+  public async stopDiscovery(): Promise<void> {
+    if (!this._adapter) {
       return;
     }
 
-    if (!(await adapter.isDiscovering())) {
+    if (!(await this._adapter.isDiscovering())) {
       return;
     }
 
-    return adapter.stopDiscovery();
+    return this._adapter.stopDiscovery();
   }
 
-  /**
-   *
-   */
-  public static close(): void {
+  public close(): void {
     destroy();
-    adapter = undefined;
-    parrotDeviceName = undefined;
   }
 
-  /**
-   *
-   */
-  public static async getParrotDevices(): Promise<FlowerPower[]> {
-    const uuids = await (adapter as Adapter).devices();
+  public async getParrotDevices(): Promise<FlowerPower[]> {
+    const uuids = await this._adapter.devices();
     let devices = await Promise.all(
       uuids.map((uuid) => {
-        return (adapter as Adapter).waitDevice(uuid);
+        return this._adapter.waitDevice(uuid);
       })
     );
     return devices
       .filter(async (device) => {
         try {
-          return (await device.getName()).toLowerCase().includes(parrotDeviceName as string);
+          return (await device.getName()).toLowerCase().includes(this._deviceName);
         } catch (ex) {
           return false;
         }

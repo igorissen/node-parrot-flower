@@ -5,7 +5,8 @@
   "main": "public-api.js",
   "scripts": {
     "lint": "eslint 'src/**/*.ts' --fix",
-    "test": "jest --runInBand"
+    "test:debug": "jest --runInBand",
+    "test": "jest"
   },
   "author": "Ismael Gorissen <ismael.gorissen@gmail.com>",
   "license": "MIT",

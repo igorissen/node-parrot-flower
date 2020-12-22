@@ -2,13 +2,19 @@ import { ParrotFlower } from '../src/parrot-flower';
 
 let parrotFlower: ParrotFlower;
 
-beforeEach(async () => {
+beforeAll(() => {
   parrotFlower = new ParrotFlower();
+});
+
+beforeEach(async () => {
   await parrotFlower.startDiscovery();
 });
 
 afterEach(async () => {
   await parrotFlower.stopDiscovery();
+});
+
+afterAll(() => {
   parrotFlower.close();
 });
 
